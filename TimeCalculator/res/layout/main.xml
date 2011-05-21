@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/linearLayout1"
+		android:orientation="horizontal">
+		<LinearLayout android:layout_height="fill_parent"
+			android:layout_width="wrap_content" android:id="@+id/linearLayout2">
+			<CheckBox android:text="@string/Empty" android:layout_width="wrap_content"
+				android:id="@+id/checkBox1" android:layout_height="wrap_content"></CheckBox>
+		</LinearLayout>
+		<LinearLayout android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:id="@+id/linearLayout3"
+			android:orientation="vertical">
+			<TextView android:id="@+id/textView1" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="Start"></TextView>
+			<LinearLayout android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:id="@+id/linearLayout4"
+				android:baselineAligned="true">
+				<Spinner android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="1" android:id="@+id/sp_startDD"></Spinner>
+				<TextView android:layout_width="wrap_content"
+					android:layout_weight="1" android:layout_height="wrap_content"
+					android:id="@+id/TextView03" android:text="@string/Days"></TextView>
+				<Spinner android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="1" android:id="@+id/sp_startMM"></Spinner>
+				<TextView android:layout_width="wrap_content"
+					android:layout_weight="1" android:layout_height="wrap_content"
+					android:id="@+id/TextView05" android:text="@string/Months"></TextView>
+				<Spinner android:layout_height="wrap_content" android:id="@+id/spinner3"
+					android:layout_width="wrap_content" android:layout_weight="1"></Spinner>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/TextView07"
+					android:text="@string/Years"></TextView>
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/linearLayout5">
+		<LinearLayout android:layout_height="fill_parent"
+			android:layout_width="wrap_content" android:id="@+id/LinearLayout02">
+			<CheckBox android:layout_width="wrap_content" android:id="@+id/CheckBox01"
+				android:layout_height="wrap_content" android:text="@string/Empty"></CheckBox>
+		</LinearLayout>
+		<LinearLayout android:layout_height="wrap_content"
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:id="@+id/LinearLayout03">
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/TextView01"
+				android:text="Difference"></TextView>
+			<LinearLayout android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:id="@+id/LinearLayout01">
+				<EditText android:layout_width="wrap_content" android:text="EditText"
+					android:id="@+id/EditText01" android:layout_height="wrap_content" android:digits="0"></EditText>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/TextView04"
+					android:text="@string/Days"></TextView>
+				<EditText android:layout_width="wrap_content" android:text="EditText"
+					android:id="@+id/EditText02" android:layout_height="wrap_content"></EditText>
+				<TextView android:layout_width="wrap_content"
+					android:layout_weight="1" android:layout_height="wrap_content"
+					android:id="@+id/TextView06" android:text="@string/Months"></TextView>
+				<EditText android:layout_width="wrap_content" android:text="EditText"
+					android:id="@+id/editText1" android:layout_height="wrap_content"></EditText>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/TextView08"
+					android:text="@string/Years"></TextView>
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/LinearLayout04">
+		<LinearLayout android:layout_height="fill_parent"
+			android:layout_width="wrap_content" android:id="@+id/LinearLayout06">
+			<CheckBox android:layout_width="wrap_content" android:id="@+id/CheckBox02"
+				android:layout_height="wrap_content" android:text="@string/Empty"></CheckBox>
+		</LinearLayout>
+		<LinearLayout android:layout_height="wrap_content"
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:id="@+id/LinearLayout05">
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/TextView02"
+				android:text="End"></TextView>
+			<LinearLayout android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:id="@+id/LinearLayout07">
+				<Spinner android:layout_height="wrap_content" android:id="@+id/Spinner06"
+					android:layout_width="wrap_content"></Spinner>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/textView2"
+					android:text="@string/Days"></TextView>
+				<Spinner android:layout_height="wrap_content" android:id="@+id/Spinner04"
+					android:layout_width="wrap_content"></Spinner>
+				<TextView android:layout_width="wrap_content"
+					android:layout_weight="1" android:layout_height="wrap_content"
+					android:id="@+id/textView3" android:text="@string/Months"></TextView>
+				<Spinner android:layout_height="wrap_content" android:id="@+id/Spinner05"
+					android:layout_width="wrap_content"></Spinner>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/textView4"
+					android:text="@string/Years"></TextView>
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>
