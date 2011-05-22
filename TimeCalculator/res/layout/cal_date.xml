@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_height="fill_parent" android:orientation="vertical" android:layout_width="wrap_content">
+	android:layout_height="fill_parent" android:orientation="vertical"
+	android:layout_width="fill_parent">
 	<LinearLayout android:id="@+id/linearLayout2"
 		android:layout_height="wrap_content" android:layout_width="fill_parent"
 		android:orientation="horizontal">
@@ -13,51 +14,80 @@
 			<TextView android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:id="@+id/txv_start"
 				android:text="Start Date"></TextView>
-			<DatePicker android:id="@+id/datePicker2"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"></DatePicker>
+			<EditText android:text="EditText" android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:id="@+id/etx_start"></EditText>
 		</LinearLayout>
 	</LinearLayout>
 	<LinearLayout android:id="@+id/linearLayout3"
-		android:layout_height="wrap_content" android:layout_width="fill_parent" android:orientation="horizontal">
-		<CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ckb_diff"></CheckBox>
-	<LinearLayout android:id="@+id/linearLayout4" android:layout_width="fill_parent"
-		android:orientation="vertical" android:layout_height="wrap_content">
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:id="@+id/txv_diff"
-			android:text="Difference"></TextView>
-		<LinearLayout android:id="@+id/linearLayout5"
-			android:layout_width="fill_parent" android:layout_height="wrap_content">
+		android:layout_height="wrap_content" android:layout_width="fill_parent"
+		android:orientation="horizontal">
+		<CheckBox android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/ckb_diff"></CheckBox>
+		<LinearLayout android:id="@+id/linearLayout4"
+			android:layout_width="fill_parent" android:orientation="vertical"
+			android:layout_height="wrap_content">
 			<TextView android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:text="D" android:id="@+id/txv_dd"
-				android:layout_weight="1"></TextView>
-			<TextView android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:id="@+id/txv_mm"
-				android:text="M" android:layout_weight="1"></TextView>
-			<TextView android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:id="@+id/txv_yy"
-				android:text="Y" android:layout_weight="1"></TextView>
+				android:layout_height="wrap_content" android:id="@+id/txv_diff"
+				android:text="Difference"></TextView>
+			<LinearLayout android:id="@+id/linearLayout5"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<LinearLayout android:layout_height="fill_parent"
+					android:layout_width="wrap_content" android:id="@+id/linearLayout7"
+					android:layout_weight="1">
+					<CheckBox android:layout_height="wrap_content"
+						android:layout_width="wrap_content" android:id="@+id/ckb_diff_dd"
+						android:layout_weight="1" android:checked="true" android:enabled="false"></CheckBox>
+					<TextView android:text="D" android:layout_height="wrap_content"
+						android:layout_width="wrap_content" android:layout_weight="1"
+						android:id="@+id/txv_dd"></TextView>
+				</LinearLayout>
+	<LinearLayout android:layout_height="fill_parent"
+		android:layout_width="wrap_content" android:id="@+id/linearLayout9"
+		android:layout_weight="1">
+		<CheckBox android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:layout_weight="1"
+			android:id="@+id/ckb_diff_mm" android:enabled="false"></CheckBox>
+		<TextView android:layout_weight="1" android:layout_height="wrap_content" android:text="M" android:layout_width="wrap_content" android:id="@+id/txv_mm"></TextView>
+	</LinearLayout>
+	<LinearLayout android:layout_height="fill_parent"
+		android:layout_width="wrap_content" android:id="@+id/linearLayout8"
+		android:layout_weight="1">
+		<CheckBox android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:layout_weight="1"
+			android:id="@+id/ckb_diff_yy" android:enabled="false"></CheckBox>
+		<TextView android:layout_weight="1" android:layout_height="wrap_content" android:text="Y" android:layout_width="wrap_content" android:id="@+id/txv_yy"></TextView>
+	</LinearLayout>
+			</LinearLayout>
+			<LinearLayout android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:id="@+id/linearLayout6">
+				<EditText android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/etx_dd" android:numeric = "decimal" android:text="1"></EditText>
+				<EditText android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:numeric = "decimal"
+					android:layout_weight="1" android:id="@+id/etx_mm" android:text="0"></EditText>
+				<EditText android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:numeric = "decimal"
+					android:layout_weight="1" android:id="@+id/etx_yy" android:text="0"></EditText>
+			</LinearLayout>
 		</LinearLayout>
-	<LinearLayout android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:id="@+id/linearLayout6">
-		<EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/tx_dd" android:text="0" android:layout_weight="1"></EditText>
-		<EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:id="@+id/tx_mm" android:layout_weight="1"></EditText>
-		<EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/tx_yy" android:text="0" android:layout_weight="1"></EditText>
-	</LinearLayout>
-	</LinearLayout>
 	</LinearLayout>
 	<LinearLayout android:layout_height="wrap_content"
 		android:layout_width="fill_parent" android:id="@+id/linearLayout1">
 		<CheckBox android:layout_height="wrap_content"
-			android:layout_width="wrap_content" android:id="@+id/chb_end"
-			android:layout_gravity="center_vertical"></CheckBox>
+			android:layout_width="wrap_content" android:layout_gravity="center_vertical"
+			android:checked="true" android:id="@+id/ckb_end"></CheckBox>
 		<LinearLayout android:layout_height="wrap_content"
 			android:layout_width="fill_parent" android:id="@+id/LinearLayout01"
 			android:orientation="vertical">
 			<TextView android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:id="@+id/txv_end"
 				android:text="End Date"></TextView>
-			<DatePicker android:id="@+id/datePicker1"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"></DatePicker>
+			<EditText android:text="EditText" android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:id="@+id/etw_end"></EditText>
 		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/linearLayout10" android:gravity="right">
+		<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Compute" android:id="@+id/btn_compute"></Button>
 	</LinearLayout>
 </LinearLayout>

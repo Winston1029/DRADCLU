@@ -8,76 +8,47 @@
 package Time.Calculator;
 
 public final class R {
-    public static final class array {
-        public static final int mm=0x7f050000;
-    }
     public static final class attr {
     }
     public static final class drawable {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int CheckBox01=0x7f06001e;
-        public static final int CheckBox02=0x7f060029;
-        public static final int EditText01=0x7f060021;
-        public static final int EditText02=0x7f060023;
-        public static final int LinearLayout01=0x7f060013;
-        public static final int LinearLayout02=0x7f060002;
-        public static final int LinearLayout03=0x7f06001f;
-        public static final int LinearLayout04=0x7f060027;
-        public static final int LinearLayout05=0x7f06002a;
-        public static final int LinearLayout06=0x7f060028;
-        public static final int LinearLayout07=0x7f06002c;
-        public static final int Spinner04=0x7f06002f;
-        public static final int Spinner05=0x7f060031;
-        public static final int Spinner06=0x7f06002d;
-        public static final int TextView01=0x7f060020;
-        public static final int TextView02=0x7f06002b;
-        public static final int TextView03=0x7f060019;
-        public static final int TextView04=0x7f060022;
-        public static final int TextView05=0x7f06001b;
-        public static final int TextView06=0x7f060024;
-        public static final int TextView07=0x7f06001d;
-        public static final int TextView08=0x7f060026;
-        public static final int chb_end=0x7f060012;
-        public static final int checkBox1=0x7f060016;
-        public static final int ckb_diff=0x7f060006;
-        public static final int ckb_start=0x7f060001;
-        public static final int datePicker1=0x7f060015;
-        public static final int datePicker2=0x7f060004;
-        public static final int editText1=0x7f060025;
-        public static final int linearLayout1=0x7f060011;
-        public static final int linearLayout2=0x7f060000;
-        public static final int linearLayout3=0x7f060005;
-        public static final int linearLayout4=0x7f060007;
-        public static final int linearLayout5=0x7f060009;
-        public static final int linearLayout6=0x7f06000d;
-        public static final int sp_startDD=0x7f060018;
-        public static final int sp_startMM=0x7f06001a;
-        public static final int spinner3=0x7f06001c;
-        public static final int textView1=0x7f060017;
-        public static final int textView2=0x7f06002e;
-        public static final int textView3=0x7f060030;
-        public static final int textView4=0x7f060032;
-        public static final int tx_dd=0x7f06000e;
-        public static final int tx_mm=0x7f06000f;
-        public static final int tx_yy=0x7f060010;
-        public static final int txv_dd=0x7f06000a;
-        public static final int txv_diff=0x7f060008;
-        public static final int txv_end=0x7f060014;
-        public static final int txv_mm=0x7f06000b;
-        public static final int txv_start=0x7f060003;
-        public static final int txv_yy=0x7f06000c;
+        public static final int LinearLayout01=0x7f050019;
+        public static final int LinearLayout02=0x7f050002;
+        public static final int btn_compute=0x7f05001d;
+        public static final int ckb_diff=0x7f050006;
+        public static final int ckb_diff_dd=0x7f05000b;
+        public static final int ckb_diff_mm=0x7f05000e;
+        public static final int ckb_diff_yy=0x7f050011;
+        public static final int ckb_end=0x7f050018;
+        public static final int ckb_start=0x7f050001;
+        public static final int etw_end=0x7f05001b;
+        public static final int etx_dd=0x7f050014;
+        public static final int etx_mm=0x7f050015;
+        public static final int etx_start=0x7f050004;
+        public static final int etx_yy=0x7f050016;
+        public static final int linearLayout1=0x7f050017;
+        public static final int linearLayout10=0x7f05001c;
+        public static final int linearLayout2=0x7f050000;
+        public static final int linearLayout3=0x7f050005;
+        public static final int linearLayout4=0x7f050007;
+        public static final int linearLayout5=0x7f050009;
+        public static final int linearLayout6=0x7f050013;
+        public static final int linearLayout7=0x7f05000a;
+        public static final int linearLayout8=0x7f050010;
+        public static final int linearLayout9=0x7f05000d;
+        public static final int txv_dd=0x7f05000c;
+        public static final int txv_diff=0x7f050008;
+        public static final int txv_end=0x7f05001a;
+        public static final int txv_mm=0x7f05000f;
+        public static final int txv_start=0x7f050003;
+        public static final int txv_yy=0x7f050012;
     }
     public static final class layout {
         public static final int cal_date=0x7f030000;
-        public static final int main=0x7f030001;
     }
     public static final class string {
-        public static final int Days=0x7f040002;
-        public static final int Empty=0x7f040005;
-        public static final int Months=0x7f040003;
-        public static final int Years=0x7f040004;
         public static final int app_name=0x7f040001;
         public static final int hello=0x7f040000;
     }
