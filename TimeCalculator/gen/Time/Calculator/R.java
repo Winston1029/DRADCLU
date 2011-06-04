@@ -14,42 +14,60 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int LinearLayout01=0x7f050019;
+        public static final int LinearLayout01=0x7f050018;
         public static final int LinearLayout02=0x7f050002;
-        public static final int btn_compute=0x7f05001d;
-        public static final int ckb_diff=0x7f050006;
-        public static final int ckb_diff_dd=0x7f05000b;
-        public static final int ckb_diff_mm=0x7f05000e;
+        public static final int TextView02=0x7f050029;
+        public static final int btn_compute=0x7f05001e;
+        public static final int btn_fwd_set=0x7f05002b;
+        public static final int ckb_diff=0x7f050008;
+        public static final int ckb_diff_dd=0x7f05000d;
+        public static final int ckb_diff_mm=0x7f05000f;
         public static final int ckb_diff_yy=0x7f050011;
-        public static final int ckb_end=0x7f050018;
+        public static final int ckb_end=0x7f050017;
+        public static final int ckb_end_incl=0x7f05001b;
+        public static final int ckb_fwd_hr=0x7f050025;
+        public static final int ckb_fwd_min=0x7f050024;
+        public static final int ckb_fwd_sec=0x7f050023;
         public static final int ckb_start=0x7f050001;
-        public static final int etw_end=0x7f05001b;
-        public static final int etx_dd=0x7f050014;
-        public static final int etx_mm=0x7f050015;
-        public static final int etx_start=0x7f050004;
-        public static final int etx_yy=0x7f050016;
-        public static final int linearLayout1=0x7f050017;
-        public static final int linearLayout10=0x7f05001c;
+        public static final int ckb_start_incl=0x7f050005;
+        public static final int dClock_now=0x7f050021;
+        public static final int etw_end=0x7f05001c;
+        public static final int etx_dd=0x7f050013;
+        public static final int etx_fwd_hr=0x7f050028;
+        public static final int etx_fwd_min=0x7f050027;
+        public static final int etx_fwd_sec=0x7f050026;
+        public static final int etx_mm=0x7f050014;
+        public static final int etx_start=0x7f050006;
+        public static final int etx_yy=0x7f050015;
+        public static final int lLayout_now=0x7f05001f;
+        public static final int linearLayout1=0x7f050016;
+        public static final int linearLayout10=0x7f05001d;
+        public static final int linearLayout11=0x7f050019;
+        public static final int linearLayout12=0x7f050003;
         public static final int linearLayout2=0x7f050000;
-        public static final int linearLayout3=0x7f050005;
-        public static final int linearLayout4=0x7f050007;
-        public static final int linearLayout5=0x7f050009;
-        public static final int linearLayout6=0x7f050013;
-        public static final int linearLayout7=0x7f05000a;
+        public static final int linearLayout3=0x7f050007;
+        public static final int linearLayout4=0x7f050009;
+        public static final int linearLayout5=0x7f05000b;
+        public static final int linearLayout6=0x7f050012;
+        public static final int linearLayout7=0x7f05000c;
         public static final int linearLayout8=0x7f050010;
-        public static final int linearLayout9=0x7f05000d;
-        public static final int txv_dd=0x7f05000c;
-        public static final int txv_diff=0x7f050008;
+        public static final int linearLayout9=0x7f05000e;
+        public static final int txv_alm=0x7f05002a;
+        public static final int txv_diff=0x7f05000a;
         public static final int txv_end=0x7f05001a;
-        public static final int txv_mm=0x7f05000f;
-        public static final int txv_start=0x7f050003;
-        public static final int txv_yy=0x7f050012;
+        public static final int txv_fwd=0x7f050022;
+        public static final int txv_now=0x7f050020;
+        public static final int txv_start=0x7f050004;
     }
     public static final class layout {
         public static final int cal_date=0x7f030000;
+        public static final int cal_time=0x7f030001;
+        public static final int forward_alarm=0x7f030002;
     }
     public static final class string {
         public static final int app_name=0x7f040001;
         public static final int hello=0x7f040000;
+        public static final int menu_fwdAlarm=0x7f040003;
+        public static final int menu_time=0x7f040002;
     }
 }

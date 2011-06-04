@@ -2,4 +2,6 @@
 <resources>
 	<string name="hello">Hello World, TimeCalculator!</string>
 	<string name="app_name">TimeCalculator</string>
+	<string name="menu_time">Calculate Time</string>
+	<string name="menu_fwdAlarm">Forward Alarm</string>
 </resources>
