@@ -11,11 +11,12 @@ public class Const {
 	static final String MENUNAME = "name";
 	static final String MENUDESC = "desc";
 	
-	static final String[] MENU = new String[] {"Physical", "Emotional", "Intellectual"};
+	static final String[] MENU = new String[] {"Physical", "Emotional", "Intellectual", "All"};
 	static final String[] MENU_SUMMARY = new String[] 
                                   {"how fast, how strong you are", 
 								   "how cheerful, how happy you are", 
-								   "how smart, how creative you are"};
+								   "how smart, how creative you are",
+								   "combine all curves above"};
 	
 	//
 	final static Calendar CAL = Calendar.getInstance();
@@ -31,6 +32,7 @@ public class Const {
     //33¡¢28¡¢23 --> Physical, Emtional, Intelliectual
     static final int[] DURATION = new int[] {23, 28, 33};
     static final String[] CHARTTITLE = new String[] {"Physical Energy", "Emotional Energy", "Intellectual Energy"};
+    static final String[][] VALUE_TITLE = new String[][] { {"Body Strength"}, {"Mental Highness"}, {"Smartness"}};
     
     //Chart display
     static final PointStyle[] STYLES = new PointStyle[] { PointStyle.CIRCLE, PointStyle.DIAMOND,

@@ -60,8 +60,8 @@ containing a value of this type.
         public static final int vstub_p=0x7f050002;
     }
     public static final class layout {
-        public static final int physical_chart=0x7f030000;
-        public static final int physical_energy=0x7f030001;
+        public static final int chart=0x7f030000;
+        public static final int energy_display=0x7f030001;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

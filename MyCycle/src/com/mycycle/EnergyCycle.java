@@ -38,7 +38,7 @@ public class EnergyCycle extends Activity {
     
 	private int[] ibday = new int[3];
     private int[] ichk = new int[3];
-    private int duration = 0;
+    private int position = 0;
     private String chartTitle = "";
     private Calendar cal_bday, cal_chk;
 	
@@ -46,23 +46,22 @@ public class EnergyCycle extends Activity {
     @Override
 	 public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
-	      setContentView(R.layout.physical_energy);
+	      setContentView(R.layout.energy_display);
 	      
-	      int position = 0;
 	      Bundle extras = getIntent().getExtras(); 
 	      if(extras !=null)
 	      {
 	    	  position = extras.getInt("position", 0);
 	      }
 
-	      initVar(position);
+	      initVar();
 	      initUI();
 	      //draw default chart
-	      updateChart(Const.CAL.getActualMaximum(Calendar.DAY_OF_MONTH), duration);
+	      updateChart(Const.CAL.getActualMaximum(Calendar.DAY_OF_MONTH));
 	      
     }
     
-    private void initVar(int position) {
+    private void initVar() {
     	//set default month to check
     	ichk[Const.DAY] = 0;
     	ibday[Const.DAY] = Const.CAL.get(Calendar.DAY_OF_MONTH);
@@ -70,7 +69,6 @@ public class EnergyCycle extends Activity {
     	ichk[Const.YEAR] = Const.CAL.get(Calendar.YEAR);
     	ibday[Const.YEAR] = Const.CAL.get(Calendar.YEAR) - 20;
     	
-    	duration = Const.DURATION[position];
     	chartTitle = Const.CHARTTITLE[position];
     	
     	cal_bday =  Calendar.getInstance();
@@ -129,7 +127,7 @@ public class EnergyCycle extends Activity {
 			        	break;
 				}
 				cal_chk.set(ichk[Const.YEAR], ichk[Const.MONTH], 1);
-				updateChart(cal_chk.getActualMaximum(Calendar.DAY_OF_MONTH), duration);
+				updateChart(cal_chk.getActualMaximum(Calendar.DAY_OF_MONTH));
 				
 			}
     	};
@@ -156,7 +154,7 @@ public class EnergyCycle extends Activity {
 				}
 				cal_chk.set(ichk[Const.YEAR], ichk[Const.MONTH], 1);
 				updateDateDisplay((EditText)findViewById(R.id.etv_mon2chk), ichk[Const.YEAR], ichk[Const.MONTH], 0);
-				updateChart(cal_chk.getActualMaximum(Calendar.DAY_OF_MONTH), duration);
+				updateChart(cal_chk.getActualMaximum(Calendar.DAY_OF_MONTH));
 			}
 		};
     	btn_pre.setOnClickListener(btn_listener);
@@ -192,7 +190,7 @@ public class EnergyCycle extends Activity {
     	}
     }
     
-    private void updateChart(int idays_in_month, int cycle) {
+    private void updateChart(int idays_in_month) {
     	//Toast.makeText(this, "Days in this month: " + idays_in_month, Toast.LENGTH_SHORT).show();
     	
     	// clear previous chart
@@ -201,9 +199,11 @@ public class EnergyCycle extends Activity {
         double[] dDate = new double[idays_in_month];
         double[] dEnergy = new double[idays_in_month];
         
+        int cycle = Const.DURATION[position];
+        
     	// Calendar Vars
         cal_bday.set(ibday[Const.YEAR], ibday[Const.MONTH], ibday[Const.DAY]);
-    	String[] titles = new String[] { "Body Strength"};
+    	String[] titles = Const.VALUE_TITLE[position];
         
         for (int i = 0; i < titles.length; i++) {
         	for (int j = 1; j <= idays_in_month; j++) {
