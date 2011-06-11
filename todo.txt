@@ -1,1 +1,2 @@
-TODO List
+1. Add Tips for Activity that more suitable for your current energy level and how to maintain your energy
+2. Add calendar function on the chart
