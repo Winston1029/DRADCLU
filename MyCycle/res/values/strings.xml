@@ -3,4 +3,5 @@
     <string name="hello">Hello World, myCycle!</string>
     <string name="app_name">myCycle</string>
     <drawable name="red">#7f00</drawable>
+    <drawable name="blue">#0000ff</drawable>
 </resources>

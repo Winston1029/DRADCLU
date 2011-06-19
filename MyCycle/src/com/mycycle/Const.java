@@ -22,6 +22,9 @@ public class Const {
 	final static Calendar CAL = Calendar.getInstance();
     static final int DATE_TO_CHECK = 0;
     static final int DATE_BDAY = 1;
+    static final int DATE_EVENT = 2;
+    static final int TIME_EVENT_START = 3;
+    static final int TIME_EVENT_END = 4;
     static final int YEAR = 0;
     static final int MONTH = 1;
     static final int DAY = 2;

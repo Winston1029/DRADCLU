@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:id="@+id/popup_event_root"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" android:background="@drawable/blue">
+  <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/txv_event_title" android:text="Create New Events" android:gravity="center_horizontal" android:layout_width="fill_parent"></TextView>
+  <TableRow android:layout_height="wrap_content" android:id="@+id/TableRow03" android:layout_width="fill_parent">
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/TextView03" android:text="Title "></TextView>
+      <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="text" android:id="@+id/etx_event_title"></EditText>
+  </TableRow>
+  <TableRow android:layout_height="wrap_content" android:id="@+id/tableRow1" android:layout_width="fill_parent">
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/textView3" android:text="Date "></TextView>
+      <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/etx_event_date" android:inputType="date">
+          <requestFocus></requestFocus>
+      </EditText>
+  </TableRow>
+  <TableRow android:layout_height="wrap_content" android:id="@+id/TableRow01" android:layout_width="fill_parent">
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/TextView01" android:text="Start Time"></TextView>
+      <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="time" android:id="@+id/etx_event_start"></EditText>
+  </TableRow>
+  <TableRow android:layout_height="wrap_content" android:id="@+id/TableRow02" android:layout_width="fill_parent">
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/TextView02" android:text="End Time  "></TextView>
+      <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="time" android:id="@+id/etx_event_end"></EditText>
+  </TableRow>
+  <LinearLayout android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:layout_width="fill_parent" android:gravity="right">
+      <CheckBox android:layout_height="wrap_content" android:text="All Date Event" android:layout_width="wrap_content" android:id="@+id/ckb_event_allday"></CheckBox>
+  </LinearLayout>
+  <TableRow android:layout_height="wrap_content" android:id="@+id/TableRow04" android:layout_width="fill_parent">
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/TextView04" android:text="Discription"></TextView>
+  </TableRow>
+  <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="text" android:id="@+id/etx_event_disc"></EditText>
+  <TableRow android:layout_height="wrap_content" android:id="@+id/tableRow2" android:layout_width="fill_parent">
+      <Button android:text="Create" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btn_event_create"></Button>
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:id="@+id/textView1" android:visibility="invisible" android:layout_weight="1"></TextView>
+      <Button android:text="Cancel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btn_event_cancel"></Button>
+  </TableRow> 
+    
+</LinearLayout>
