@@ -4,3 +4,5 @@
 4. Tag emotions on the chart
 5. Add weekly view
 6. Handle back button when popup window appear
+7. Save someone's energy chart
+8. allow user to select chart they want to view together
