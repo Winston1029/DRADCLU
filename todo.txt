@@ -1,3 +1,6 @@
 1. Add Tips for Activity that more suitable for your current energy level and how to maintain your energy
-2. Add calendar function on the chart
+2. Add calendar function on the chart (Done)
 3. Add self created chart to allow user to name it themselves
+4. Tag emotions on the chart
+5. Add weekly view
+6. Handle back button when popup window appear
