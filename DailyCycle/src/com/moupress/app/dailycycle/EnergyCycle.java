@@ -161,7 +161,7 @@ public class EnergyCycle extends AbstractCycle {
 		Uri calendars = Uri.parse("content://calendar/calendars");
 
 		//String[] selectionArgs = new String[] {"name=Testing"}
-		Cursor managedCursor =  managedQuery(calendars, projection, "name=\"Testing\"", null, null);
+		Cursor managedCursor =  managedQuery(calendars, projection, "selected=1", null, null);
 		//String calName;
 		
 		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -354,7 +354,7 @@ public class EnergyCycle extends AbstractCycle {
 //        	l.ad
             return true;
         case Const.MENU_CHART_SAVEAS:
-        	//Save the chart to db
+        	Toast.makeText(this, "Coming Soon", Const.TOASTSHOWTIME).show();
         	return true;
         case Const.MENU_CHART_CHANGEVIEW:
         	if (myBioCycle.weekly_view) {

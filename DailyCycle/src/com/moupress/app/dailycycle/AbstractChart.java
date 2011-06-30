@@ -12,14 +12,14 @@ import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import com.moupress.app.dailycycle.PinchDetector.OnPinchListener;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
+import android.util.FloatMath;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 public class AbstractChart {
 	public XYMultipleSeriesRenderer chartRenderer;
@@ -69,7 +69,7 @@ public class AbstractChart {
 		//renderer.setZoomLimits(new double[] { -10, 20, -10, 40 });
 		//disable zoom
 		renderer.setZoomLimits(null);
-		renderer.setZoomEnabled(false, false);
+		renderer.setZoomEnabled(true, false);
 	}
 	
 	protected XYMultipleSeriesRenderer buildRenderer(int[] colors, PointStyle[] styles) {
@@ -108,6 +108,9 @@ public class AbstractChart {
 		return dataset;
 	}
 	
+	protected boolean isMultiTouch = false;
+	private float oldDist = 0;
+	private long lastTouchTime = 0;
 	protected void redrawChart(Context context, String[] titles, List<double[]> x, List<double[]> values) {
 		
         XYMultipleSeriesDataset dataset = buildDataset(titles, x, values); 
@@ -116,18 +119,29 @@ public class AbstractChart {
         mView.setOnTouchListener(new View.OnTouchListener() {
 			//@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				int pointerCount = event.getPointerCount();
-				
-				// 2 finger touch, zooming events
-		        if(pointerCount == 2) {
-		            scaleChart(v, event);
-		            return true;
-		        }
-		        // 1 finger touch, moving events
-		        if (pointerCount == 1) {
-		        	moveChart(v, event);
-		        	return false;
-		        }
+				lastTouchTime = System.currentTimeMillis();
+				int action = event.getAction() & MotionEvent.ACTION_MASK;
+				switch(action) {
+//				    case MotionEvent.ACTION_POINTER_DOWN:
+//				        oldDist = spacing(event);
+//				        if (oldDist > 10f) {
+//				        	isMultiTouch = true;
+//				        }
+//				        break;
+//				    case MotionEvent.ACTION_POINTER_UP:
+//				        isMultiTouch = false;
+//				        scaleChart(v, event);
+//				        break;
+//				    case MotionEvent.ACTION_MOVE:
+//				    	if(isMultiTouch) {
+//				    		//scaleChart(v, event);
+//				        }
+//				    	break;
+				    case MotionEvent.ACTION_DOWN:
+				    case MotionEvent.ACTION_UP:
+				    	moveChart(v, event);
+				    	break;
+				}
 				return false;
 			}
 		});
@@ -166,37 +180,21 @@ public class AbstractChart {
 	}
 
 	protected void scaleChart(View v, MotionEvent e) {
-		PinchDetector pinch = new PinchDetector(new OnPinchListener() {
-
-			public void onPinch() {
-				// to add zooming here
-			}
+		float newDist = spacing(e);
+		if (newDist > 10f) {
+			double[] orgPanLimit = chartRenderer.getPanLimits();
 			
-		});
-		pinch.scaleChart(v, e);
+			double scaling = Math.max(Math.min( oldDist / newDist / 10.0, 5), 0.5) ;
+			orgPanLimit[1] = Math.max( orgPanLimit[0] + (orgPanLimit[1] - orgPanLimit[0]) * scaling, orgPanLimit[0] + 7);
+			chartRenderer.setPanLimits(orgPanLimit);
+		}
+		
 	}
 	
+	private float spacing(MotionEvent event) {
+		   float x = event.getX(0) - event.getX(1);
+		   float y = event.getY(0) - event.getY(1);
+		   return FloatMath.sqrt(x * x + y * y);
+		}
+	
 }
-
-
-//multi touch example 2
-//int action = event.getAction() & MotionEvent.ACTION_MASK;
-//switch(action)
-//{
-//    case MotionEvent.ACTION_DOWN:
-//        break;
-//    case MotionEvent.ACTION_POINTER_DOWN:
-//        isMultiTouch = true;
-//        setPoints(event);           
-//        break;
-//    case MotionEvent.ACTION_POINTER_UP:
-//        isMultiTouch = false;
-//        break;
-//    case MotionEvent.ACTION_MOVE:
-//        if(isMultiTouch) {
-//            setPoints(event);
-//        }
-//        break;
-//}
-//
-//return true;
