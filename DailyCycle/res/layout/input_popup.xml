@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" android:id="@+id/popup_input_root">
+    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/tableRow1">
+        <TextView android:gravity="center_horizontal" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/txv_popup_input_title1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Your Value For"></TextView>
+        <TextView android:gravity="center_horizontal" android:textAppearance="?android:attr/textAppearanceLarge" android:text="TextView" android:id="@+id/txv_popup_input_title2" android:layout_height="wrap_content" android:layout_width="fill_parent"></TextView>
+    </TableRow>
+    <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:id="@+id/etx_popup_input_value">
+        <requestFocus></requestFocus>
+    </EditText>
+    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/tableRow2">
+        <Button android:layout_height="wrap_content" android:id="@+id/btn_popup_input_create" android:layout_width="wrap_content" android:text="Save"></Button>
+        <TextView android:text="TextView" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:visibility="invisible"></TextView>
+        <Button android:layout_height="wrap_content" android:text="Cancel" android:id="@+id/btn_popup_input_cancel" android:layout_width="wrap_content"></Button>
+    </TableRow>
+    
+</LinearLayout>

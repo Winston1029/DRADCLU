@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, myCycle!</string>
+    <string name="app_name">Daily Cycle</string>
+    <drawable name="red">#7f00</drawable>
+    <drawable name="blue">#0000ff</drawable>
+    <drawable name="white_tran50">#a0f0</drawable>
+    <string name="menu_insert">Create New Chart</string>
+    <string name="menu_delete">Delete Item</string>
+    <string name="menu_about">About</string>
+    <string name="menu_save_as">Save Chart As</string>
+    <string name="menu_changeview">Change View</string>
+</resources>
