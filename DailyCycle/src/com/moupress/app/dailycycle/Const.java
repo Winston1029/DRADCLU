@@ -22,6 +22,7 @@ public class Const {
 	static final int MENU_CHART_INSERT = Menu.FIRST + 1;
 	static final int MENU_CHART_ABOUT = 1;
 	static final int MENU_CHART_SAVEAS = 2;
+	static final int MENU_CHART_CHANGEVIEW = 3;
 	
 	//33¡¢28¡¢23 --> Physical, Emtional, Intelliectual
     static final int[][] DURATION = new int[][] {{23}, {28}, {33}, {23, 28, 33}};
@@ -50,17 +51,5 @@ public class Const {
     
     
     static final int TOASTSHOWTIME = 2000;
-    
-    static final String DATABASE_NAME = "custom_chart.db";
-    static final String CHARTS_TABLE_NAME = "charts";
-    static final int DATABASE_VERSION = 2;
-    static final String CREATE_DATABASE = "CREATE TABLE " + CHARTS_TABLE_NAME + " ("
-										    + Charts._ID + " INTEGER PRIMARY KEY,"
-										    + Charts.TITLE + " TEXT,"
-										    + Charts.XCOOR + " TEXT,"
-										    + Charts.YCOOR + " TEXT,"
-										    + Charts.CREATED_DATE + " INTEGER,"
-										    + Charts.MODIFIED_DATE + " INTEGER"
-										    + ");";
     
 }

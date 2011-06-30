@@ -58,4 +58,8 @@ public class AbstractCycle extends Activity {
 	    //EditText etv_chk = (EditText) findViewById(R.id.etv_mon2chk);
     	//updateDateDisplay((EditText)findViewById(R.id.etv_mon2chk), myBioCycle.cal_chk.get(Calendar.YEAR), myBioCycle.cal_chk.get(Calendar.MONTH), 0);
 	}
+	
+	public void drawPopup(int datePressed) {
+		
+	}
 }

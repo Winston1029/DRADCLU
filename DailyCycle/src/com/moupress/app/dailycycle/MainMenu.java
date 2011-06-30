@@ -42,10 +42,10 @@ public class MainMenu extends ListActivity {
 			values.add(v);
 		}
 		
-		Intent intent = getIntent();
-        if (intent.getData() == null) {
-            intent.setData(Charts.CONTENT_URI);
-        }
+//		Intent intent = getIntent();
+//        if (intent.getData() == null) {
+//            intent.setData(Charts.CONTENT_URI);
+//        }
         
         setListAdapter(new SimpleAdapter(this, values, android.R.layout.simple_list_item_2,
             new String[] { Const.MENUNAME, Const.MENUDESC }, new int[] { android.R.id.text1, android.R.id.text2 }));
@@ -53,6 +53,7 @@ public class MainMenu extends ListActivity {
         // Inform the list we provide context menus for items
         getListView().setOnCreateContextMenuListener(this);
         //registerForContextMenu(this);
+        
     }
     
     @Override
@@ -80,10 +81,7 @@ public class MainMenu extends ListActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case Const.MENU_CHART_INSERT:
-            // Launch activity to insert a new chart
-        	
         	createNewChartPopup();
-        	
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -103,7 +101,7 @@ public class MainMenu extends ListActivity {
     	Button btn_newchart_cancel = (Button) layout.findViewById(R.id.btn_newchart_cancel);
     	btn_newchart_create.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
+			//@Override
 			public void onClick(View arg0) {
 				String title = ((EditText)layout.findViewById(R.id.etx_newchart_title)).getText().toString();
 				String yaxis = ((EditText)layout.findViewById(R.id.etx_newchart_yaxis)).getText().toString();
@@ -118,7 +116,7 @@ public class MainMenu extends ListActivity {
 		});
     	btn_newchart_cancel.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
+			//@Override
 			public void onClick(View v) {
 				newchartPopup.dismiss();
 				Toast.makeText(getBaseContext(), "Cancel New Charts", Const.TOASTSHOWTIME).show();
@@ -136,23 +134,21 @@ public class MainMenu extends ListActivity {
             Log.e(Const.TAG, "bad menuInfo", e);
             return;
         }
-
         // Setup the menu header
         menu.setHeaderTitle(Const.MENU[info.position]);
-
         // Add a menu item to delete the note
         menu.add(0, Const.MENU_CHART_DELETE, 0, R.string.menu_delete);
     }
     
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info;
-        try {
-             info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        } catch (ClassCastException e) {
-            Log.e(Const.TAG, "bad menuInfo", e);
-            return false;
-        }
+//        AdapterView.AdapterContextMenuInfo info;
+//        try {
+//             info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+//        } catch (ClassCastException e) {
+//            Log.e(Const.TAG, "bad menuInfo", e);
+//            return false;
+//        }
 
         switch (item.getItemId()) {
             case Const.MENU_CHART_DELETE: {

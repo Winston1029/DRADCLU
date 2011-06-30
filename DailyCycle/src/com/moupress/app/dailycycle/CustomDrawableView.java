@@ -6,7 +6,6 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.View.MeasureSpec;
 
 public class CustomDrawableView extends View {
     private ShapeDrawable mDrawable;

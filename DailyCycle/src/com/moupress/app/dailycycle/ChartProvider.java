@@ -15,22 +15,34 @@ import android.util.Log;
 
 public class ChartProvider extends ContentProvider {
 	
+	static final String DATABASE_NAME = "custom_chart.db";
+    static final String CHARTS_TABLE_NAME = "charts";
+    static final int DATABASE_VERSION = 2;
+    static final String CREATE_DATABASE = "CREATE TABLE " + CHARTS_TABLE_NAME + " ("
+										    + Charts._ID + " INTEGER PRIMARY KEY,"
+										    + Charts.TITLE + " TEXT,"
+										    + Charts.XCOOR + " TEXT,"
+										    + Charts.YCOOR + " TEXT,"
+										    + Charts.CREATED_DATE + " INTEGER,"
+										    + Charts.MODIFIED_DATE + " INTEGER"
+										    + ");";
+	
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 	
 		DatabaseHelper(Context context) {
-	        super(context, Const.DATABASE_NAME, null, Const.DATABASE_VERSION);
+	        super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	    }
 	
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			db.execSQL(Const.CREATE_DATABASE);
+			db.execSQL(CREATE_DATABASE);
 		}
 	
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			Log.w(Const.TAG, "Upgrading database from version " + oldVersion + " to "
 	                + newVersion + ", which will destroy all old data");
-			db.execSQL("DROP TABLE IF EXISTS " + Const.CHARTS_TABLE_NAME);
+			db.execSQL("DROP TABLE IF EXISTS " + CHARTS_TABLE_NAME);
 			onCreate(db);
 		}
 	
@@ -110,7 +122,7 @@ public class ChartProvider extends ContentProvider {
         }
 
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        long rowId = db.insert(Const.CHARTS_TABLE_NAME, Charts.XCOOR, values);
+        long rowId = db.insert(CHARTS_TABLE_NAME, Charts.XCOOR, values);
         if (rowId > 0) {
             Uri noteUri = ContentUris.withAppendedId(Charts.CONTENT_URI, rowId);
             getContext().getContentResolver().notifyChange(noteUri, null);

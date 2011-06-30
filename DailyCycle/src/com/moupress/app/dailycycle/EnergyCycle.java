@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -21,16 +20,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -50,7 +50,7 @@ public class EnergyCycle extends AbstractCycle {
     
     
 	/** Called when the activity is first created. */
-    @Override
+    //@Override
 	 public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
 	      
@@ -87,7 +87,7 @@ public class EnergyCycle extends AbstractCycle {
     	updateDateDisplay((EditText)findViewById(R.id.etv_mon2chk), myBioCycle.cal_chk.get(Calendar.YEAR), myBioCycle.cal_chk.get(Calendar.MONTH), 0);
     	etv_chk.setOnTouchListener(new View.OnTouchListener() {
 
-			@Override
+			//@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				showDialog(Const.DATE_TO_CHECK);
 				return false;
@@ -99,7 +99,7 @@ public class EnergyCycle extends AbstractCycle {
     	
     	etv_bday.setOnTouchListener(new View.OnTouchListener() {
 
-			@Override
+			//@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				showDialog(Const.DATE_BDAY);
 				return false;
@@ -109,7 +109,7 @@ public class EnergyCycle extends AbstractCycle {
     	
     	mDateSetListener = new DatePickerDialog.OnDateSetListener(){
 
-			@Override
+			//@Override
 			public void onDateSet(DatePicker view, int year, int monthOfYear,
 					int dayOfMonth) {
 				switch (iEditTextIndex) {
@@ -132,7 +132,7 @@ public class EnergyCycle extends AbstractCycle {
     	
     	mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
 			
-			@Override
+			//@Override
 			public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 				switch (iEditTextIndex) {
 					case Const.TIME_EVENT_END:
@@ -148,36 +148,11 @@ public class EnergyCycle extends AbstractCycle {
     	
     	Button btn_pre =(Button) findViewById(R.id.btn_pre);
     	Button btn_next =(Button) findViewById(R.id.btn_next);
-    	OnClickListener btn_listener = new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				int id = v.getId();
-				if (id == R.id.btn_next) {
-					Toast.makeText(getBaseContext(), "Check Next Month", Const.TOASTSHOWTIME).show();
-					if (myBioCycle.cal_chk.get(Calendar.MONTH) > Calendar.DECEMBER) {
-						myBioCycle.cal_chk.set(myBioCycle.cal_chk.get(Calendar.YEAR) + 1, Calendar.JANUARY, 1);
-					}
-					else {
-						myBioCycle.cal_chk.set(myBioCycle.cal_chk.get(Calendar.YEAR), myBioCycle.cal_chk.get(Calendar.MONTH) + 1, 1);
-					}
-				} else if (id == R.id.btn_pre) {
-					Toast.makeText(getBaseContext(), "Check Previous Month", Const.TOASTSHOWTIME).show();
-					if (myBioCycle.cal_chk.get(Calendar.MONTH) == Calendar.JANUARY) {
-						myBioCycle.cal_chk.set(myBioCycle.cal_chk.get(Calendar.YEAR) - 1, Calendar.DECEMBER, 1);
-					} else {
-						myBioCycle.cal_chk.set(myBioCycle.cal_chk.get(Calendar.YEAR), myBioCycle.cal_chk.get(Calendar.MONTH) - 1, 1);
-					}
-				}
-				updateDateDisplay((EditText)findViewById(R.id.etv_mon2chk), myBioCycle.cal_chk.get(Calendar.YEAR), myBioCycle.cal_chk.get(Calendar.MONTH), 0);
-				myBioCycle.updateChart(getBaseContext(), Const.DURATION[position], Const.VALUETITLE[position]);
-			}
-		};
+    	MyBtnListener btn_listener = new MyBtnListener();
+    	
     	btn_pre.setOnClickListener(btn_listener);
     	btn_next.setOnClickListener(btn_listener);
     	
-
-	    //FrameLayout framelayout = (FrameLayout)findViewById(R.id.frlayout_chart);
 	    myBioCycle.setFrameLayout((FrameLayout)findViewById(R.id.frlayout_chart));
     }
 	
@@ -267,8 +242,8 @@ public class EnergyCycle extends AbstractCycle {
         return dialog;
     }
     
-	
-	public void drawPopupEvent(int datePressed) {
+	@Override
+	public void drawPopup(int datePressed) {
 		LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(R.layout.event_popup, (ViewGroup)findViewById(R.id.popup_event_root));
 //		LinearLayout.LayoutParams layoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -280,7 +255,7 @@ public class EnergyCycle extends AbstractCycle {
 	    
 	    etx_event_date = (EditText) layout.findViewById(R.id.etx_event_date);
 	    etx_event_date.setOnTouchListener(new View.OnTouchListener() {
-			@Override
+			//@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				showDialog(Const.DATE_EVENT);
 				return false;
@@ -290,7 +265,7 @@ public class EnergyCycle extends AbstractCycle {
 	    etx_event_start = (EditText) layout.findViewById(R.id.etx_event_start);
 	    etx_event_start.setOnTouchListener(new View.OnTouchListener() {
 
-			@Override
+			//@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				showDialog(Const.TIME_EVENT_START);
 				return false;
@@ -300,7 +275,7 @@ public class EnergyCycle extends AbstractCycle {
 	    etx_event_end = (EditText) layout.findViewById(R.id.etx_event_end);
 	    etx_event_end.setOnTouchListener(new View.OnTouchListener() {
 
-			@Override
+			//@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				showDialog(Const.TIME_EVENT_END);
 				return false;
@@ -318,7 +293,7 @@ public class EnergyCycle extends AbstractCycle {
 	    Button btn_event_create = (Button) layout.findViewById(R.id.btn_event_create);
 	    btn_event_create.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
+			//@Override
 			public void onClick(View v) {
 				addCalendarEvent(etx_event_title.getText().toString(), 
 								etx_event_disc.getText().toString(), 
@@ -333,7 +308,7 @@ public class EnergyCycle extends AbstractCycle {
 	    Button btn_event_cancel = (Button) layout.findViewById(R.id.btn_event_cancel);
 	    btn_event_cancel.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
+			//@Override
 			public void onClick(View v) {
 				popup.dismiss();
 				Toast.makeText(getBaseContext(), "Cancel Events", Const.TOASTSHOWTIME).show();
@@ -366,13 +341,81 @@ public class EnergyCycle extends AbstractCycle {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case Const.MENU_CHART_ABOUT:
-            //Display more info to user
+//        	Dialog dialog = new Dialog(getApplicationContext());
+//
+//        	dialog.setContentView(R.layout.custom_dialog);
+//        	dialog.setTitle("Custom Dialog");
+//
+//        	TextView text = (TextView) dialog.findViewById(R.id.txv_about);
+//        	text.setText("Hello, this is a custom dialog!");
+//        	ImageView image = (ImageView) dialog.findViewById(R.id.img_about);
+//        	image.setImageResource(android.R.drawable.ic_menu_my_calendar);
+//        	LinearLayout l = (LinearLayout)findViewById(R.layout.energy_display);
+//        	l.ad
             return true;
         case Const.MENU_CHART_SAVEAS:
         	//Save the chart to db
         	return true;
+        case Const.MENU_CHART_CHANGEVIEW:
+        	if (myBioCycle.weekly_view) {
+        		myBioCycle.weekly_view = false;
+        		item.setTitle("To Weekly View");
+        	}
+        	else {
+        		myBioCycle.weekly_view = true;
+        		item.setTitle("To Monthly View");
+        	}
+        	myBioCycle.updateChart(getBaseContext(), Const.DURATION[position], Const.VALUETITLE[position]);
+        	
+        	return true;
         }
         
         return super.onOptionsItemSelected(item);
+    }
+
+    private class MyBtnListener implements View.OnClickListener {
+
+		public void onClick(View v) {
+			int id = v.getId();
+			if (myBioCycle.weekly_view) {
+				if (id == R.id.btn_next) {
+					if (myBioCycle.weekly_view_start + 7 > myBioCycle.cal_chk.getActualMaximum(Calendar.DAY_OF_MONTH)){
+						Toast.makeText(getBaseContext(), "This is the last week of the month", Const.TOASTSHOWTIME).show();
+					} else {
+						myBioCycle.weekly_view_start += 7;
+					}
+				}  else if (id == R.id.btn_pre) {
+					if (myBioCycle.weekly_view_start == 0){
+						Toast.makeText(getBaseContext(), "This is the first week of the month", Const.TOASTSHOWTIME).show();
+					} else {
+						myBioCycle.weekly_view_start -= 7;
+					}
+				}
+				//myBioCycle.updateChart(getBaseContext(), Const.DURATION[position], Const.VALUETITLE[position], true);
+					
+			} else {
+				if (id == R.id.btn_next) {
+					Toast.makeText(getBaseContext(), "Check Next Month", Const.TOASTSHOWTIME).show();
+					if (myBioCycle.cal_chk.get(Calendar.MONTH) == Calendar.DECEMBER) {
+						myBioCycle.cal_chk.set(myBioCycle.cal_chk.get(Calendar.YEAR) + 1, Calendar.JANUARY, 1);
+					}
+					else {
+						myBioCycle.cal_chk.set(myBioCycle.cal_chk.get(Calendar.YEAR), myBioCycle.cal_chk.get(Calendar.MONTH) + 1, 1);
+					}
+					
+				} else if (id == R.id.btn_pre) {
+					Toast.makeText(getBaseContext(), "Check Previous Month", Const.TOASTSHOWTIME).show();
+					if (myBioCycle.cal_chk.get(Calendar.MONTH) == Calendar.JANUARY) {
+						myBioCycle.cal_chk.set(myBioCycle.cal_chk.get(Calendar.YEAR) - 1, Calendar.DECEMBER, 1);
+					} else {
+						myBioCycle.cal_chk.set(myBioCycle.cal_chk.get(Calendar.YEAR), myBioCycle.cal_chk.get(Calendar.MONTH) - 1, 1);
+					}
+				}
+				updateDateDisplay((EditText)findViewById(R.id.etv_mon2chk), myBioCycle.cal_chk.get(Calendar.YEAR), myBioCycle.cal_chk.get(Calendar.MONTH), 0);				
+			}
+			myBioCycle.updateChart(getBaseContext(), Const.DURATION[position], Const.VALUETITLE[position]);
+			
+		}
+    	
     }
 }
