@@ -1,6 +1,7 @@
 package com.moupress.app.dailycycle;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +9,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
+import android.widget.Toast;
 
 public class ChartHelper {
 
@@ -18,7 +21,8 @@ public class ChartHelper {
     static final String CREATE_TABLE = "CREATE TABLE " + CHARTS_TABLE_NAME + " ("
 										    + Charts._ID + " INTEGER PRIMARY KEY,"
 										    + Charts.TITLE + " TEXT,"
-										    + Charts.XCOOR + " FLOAT,"
+										    + Charts.YAXIS + " TEXT,"
+										    + Charts.XCOOR + " INTEGER,"
 										    + Charts.YCOOR + " FLOAT,"
 										    + Charts.CREATED_DATE + " INTEGER,"
 										    + Charts.MODIFIED_DATE + " INTEGER"
@@ -62,9 +66,9 @@ public class ChartHelper {
 		}
 	}
 	
-	public void insert(String chartTitle, double xCoor, double yCoor) {
+	public void insert(String chartTitle, String yAxis, int xCoor, double yCoor) {
 		Cursor c = null;
-		String[] db_cols = {Charts.TITLE, Charts.XCOOR, Charts.YCOOR};
+		String[] db_cols = {Charts.TITLE, Charts.YAXIS, Charts.XCOOR, Charts.YCOOR};
 		int newRecordID = 0;
 		try {
 			c = db.query(CHARTS_TABLE_NAME, db_cols, null, null, null, null, Charts.DEFAULT_SORT_ORDER);
@@ -78,6 +82,7 @@ public class ChartHelper {
 		ContentValues values = new ContentValues();
 		values.put(Charts._ID, newRecordID);
 		values.put(Charts.TITLE, chartTitle);
+		values.put(Charts.YAXIS, yAxis);
 		values.put(Charts.XCOOR, xCoor);
 		values.put(Charts.YCOOR, yCoor);
 		
@@ -88,17 +93,74 @@ public class ChartHelper {
 		db.insert(CHARTS_TABLE_NAME, null, values);
 	}
 	
-	public void delete() {
-		
+	public void delete(String titleToDelete) {
+		String whereClause = Charts.TITLE + " = '" + titleToDelete + "'";
+		db.delete(CHARTS_TABLE_NAME, whereClause, null);
 	}
-	public ArrayList<Charts> getAll(){
-		ArrayList<Charts> val = new ArrayList<Charts>();
-		return val;
+	
+	public List<ContentValues> get(String chartTitle) {
+		ArrayList<ContentValues> ret = new ArrayList<ContentValues>();
+		Cursor c = null;
+		String selection = Charts.TITLE + " = '" + chartTitle + "'";
+		String[] db_cols = {Charts.TITLE, Charts.YAXIS, Charts.XCOOR, Charts.YCOOR};
+		try {
+			c = db.query(true, CHARTS_TABLE_NAME, db_cols, selection, null, null, null, Charts.DEFAULT_SORT_ORDER, null);
+			int numRows = c.getCount();
+			c.moveToFirst();
+			for (int i = 0; i < numRows; ++i) {
+				ContentValues values = new ContentValues();
+				values.put(Charts.TITLE, c.getString(0));
+				values.put(Charts.YAXIS, c.getString(1));
+				values.put(Charts.XCOOR, c.getInt(2));
+				values.put(Charts.YCOOR, c.getFloat(3));
+				ret.add(values);
+				c.moveToNext();
+			}
+		} catch (SQLException e) {
+			Log.v(Const.TAG, "Get "+ chartTitle + " failed.", e);
+		} finally {
+			if (c != null && !c.isClosed()) {
+				c.close();
+			}
+		}
+		return ret;
 	}
-	public void get() {
-		
+	
+	public List<ContentValues> getAll() {
+		ArrayList<ContentValues> ret = new ArrayList<ContentValues>();
+		Cursor c = null;
+		String[] db_cols = {Charts.TITLE, Charts.YAXIS};
+		try {
+			c = db.query(true, CHARTS_TABLE_NAME, db_cols, null, null, null, null, Charts.DEFAULT_SORT_ORDER, null);
+			int numRows = c.getCount();
+			c.moveToFirst();
+			for (int i = 0; i < numRows; ++i) {
+				ContentValues values = new ContentValues();
+				values.put(Charts.TITLE, c.getString(0));
+				values.put(Charts.YAXIS, c.getString(1));
+				//values.put(Charts.XCOOR, c.getFloat(2));
+				//values.put(Charts.YCOOR, c.getFloat(3));
+				ret.add(values);
+				c.moveToNext();
+			}
+		} catch (SQLException e) {
+			Log.v(Const.TAG, "Getall result fail", e);
+		} finally {
+			if (c != null && !c.isClosed()) {
+				c.close();
+			}
+		}
+		return ret;
 	}
+	
 	public void update() {
-		
+//		ContentValues values = new ContentValues();
+//		values.put("zip", location.zip);
+//		values.put("city", location.city);
+//		values.put("region", location.region);
+//		values.put("lastalert", location.lastalert);
+//		values.put("alertenabled", location.alertenabled);
+//		db.update(DBHelper.DB_TABLE, values,
+//		"_id=" + location.id, null);
 	}
 }

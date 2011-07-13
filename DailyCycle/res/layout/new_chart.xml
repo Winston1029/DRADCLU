@@ -5,9 +5,9 @@
   android:id="@+id/new_chart_layout"
   android:padding="10dp" android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@drawable/white_tran50">
     <TextView android:text="Title of Your Cycle" android:textColor="#FFF" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/TextView01"></TextView>
-    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/etx_newchart_title" android:text="testChartTitle"></EditText>
+    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/etx_newchart_title"></EditText>
     <TextView android:textColor="#FFF" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/text" android:text="Y-axis Name"></TextView>
-    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/etx_newchart_yaxis" android:text="testYAxisTitle">
+    <EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/etx_newchart_yaxis">
         <requestFocus></requestFocus>
     </EditText>
     <TableRow android:id="@+id/tableRow1" android:layout_width="fill_parent" android:layout_height="wrap_content">

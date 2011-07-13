@@ -20,6 +20,7 @@ public class Const {
 	static final String TAG = "DailyCycle";
 	static final int MENU_CHART_DELETE = Menu.FIRST;
 	static final int MENU_CHART_INSERT = Menu.FIRST + 1;
+	static final int MENU_SAVED_BDAY = Menu.FIRST + 2;
 	static final int MENU_CHART_ABOUT = 1;
 	static final int MENU_CHART_SAVEAS = 2;
 	static final int MENU_CHART_CHANGEVIEW = 3;
@@ -51,5 +52,5 @@ public class Const {
     
     
     static final int TOASTSHOWTIME = 2000;
-    
+	
 }

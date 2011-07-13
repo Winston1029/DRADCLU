@@ -19,7 +19,6 @@ import android.util.FloatMath;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 public class AbstractChart {
 	public XYMultipleSeriesRenderer chartRenderer;
@@ -110,7 +109,6 @@ public class AbstractChart {
 	
 	protected boolean isMultiTouch = false;
 	private float oldDist = 0;
-	private long lastTouchTime = 0;
 	protected void redrawChart(Context context, String[] titles, List<double[]> x, List<double[]> values) {
 		
         XYMultipleSeriesDataset dataset = buildDataset(titles, x, values); 
@@ -119,7 +117,6 @@ public class AbstractChart {
         mView.setOnTouchListener(new View.OnTouchListener() {
 			//@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				lastTouchTime = System.currentTimeMillis();
 				int action = event.getAction() & MotionEvent.ACTION_MASK;
 				switch(action) {
 //				    case MotionEvent.ACTION_POINTER_DOWN:
@@ -171,10 +168,18 @@ public class AbstractChart {
 				+ (yCoorChartPress[1] - yCoorChartPress[0]) * (yCoorChartPress[1] - yCoorChartPress[0]) < delta // down & up distance 
 				&& (tCoorChartPress[1] - tCoorChartPress[0]) > 3 /* down & up time */) {
 			//Toast.makeText(getBaseContext(), "Create Calendar Events", Toast.LENGTH_SHORT).show();
-			double xstart = chartRenderer.getXAxisMin();
-			int datePressed = (int) Math.round((xCoorChartPress[1] + xCoorChartPress[0]) / 
-												(2.0 * v.getWidth() / chartRenderer.getXLabels())
-												+ xstart);
+			double xstart = Math.ceil(chartRenderer.getXAxisMin());
+			double widthPerLabel = (v.getWidth() - chartRenderer.getMargins()[0] - chartRenderer.getMargins()[2])/chartRenderer.getXLabels();
+			int datePressed = (int) Math.round((xCoorChartPress[1] + xCoorChartPress[0] - chartRenderer.getMargins()[0] * 2) / 2.0 / widthPerLabel
+												+ xstart - 1);
+//			Toast.makeText(activity.getBaseContext(), "xstart: "+xstart 
+//					+ " datePressed: "+ datePressed 
+//					+ " #lables: "+chartRenderer.getXLabels()
+//					+ " Coor0: "+xCoorChartPress[0]
+//                    + " Coor1: "+xCoorChartPress[1] 
+//                    + " Width: "+v.getWidth()
+//                    + " width per cell:" + widthPerLabel, 
+//                    Toast.LENGTH_LONG).show();
 			activity.drawPopup(datePressed);	
 		}
 	}

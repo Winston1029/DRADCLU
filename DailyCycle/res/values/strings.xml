@@ -8,6 +8,7 @@
     <string name="menu_insert">Create New Chart</string>
     <string name="menu_delete">Delete Item</string>
     <string name="menu_about">About</string>
-    <string name="menu_save_as">Save Chart As</string>
+    <string name="menu_save_as">Save Birthday</string>
     <string name="menu_changeview">To Weekly View</string>
+    <string name="menu_saved_bday">Saved BDay</string>
 </resources>

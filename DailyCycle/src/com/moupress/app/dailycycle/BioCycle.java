@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -12,9 +13,11 @@ import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,13 +31,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class EnergyCycle extends AbstractCycle {
+public class BioCycle extends AbstractCycle {
 	
     private int iEditTextIndex;
     //listeners
@@ -57,7 +59,12 @@ public class EnergyCycle extends AbstractCycle {
 	      Bundle extras = getIntent().getExtras(); 
 	      if(extras !=null)
 	      {
-	    	  position = extras.getInt("position", 0);
+	    	  birthday = extras.getInt(Birthday.BIRTHDAY, -1);
+	    	  if (birthday > -1) {
+	    		  position = 3; //display all
+	    	  } else {
+	    		  position = extras.getInt("position", 0);
+	    	  }
 	      }
 
 	      initVar();
@@ -68,14 +75,18 @@ public class EnergyCycle extends AbstractCycle {
     
    
 
-	private void initVar() {
-	
+	protected void initVar() {
+		super.initVar();
     	chartTitle = Const.CHARTTITLE[position];
     	//FrameLayout layout = (FrameLayout)findViewById(R.id.frlayout_chart);
     	if (myBioCycle == null)
     		myBioCycle = new BioChart(chartTitle, this);
-    	
+    	myBioCycle.chartRenderer.setChartTitle(chartTitle);
     	datePressed = 1;
+    	
+    	if (birthday > -1) {
+    		myBioCycle.cal_bday.set(birthday / 10000, (birthday % 10000) / 100 - 1, birthday % 100);
+    	}
 	}
 
 	@Override
@@ -251,6 +262,19 @@ public class EnergyCycle extends AbstractCycle {
 //		layout.setLayoutParams(layoutParam);
 		popup = new PopupWindow(layout,  LayoutParams.WRAP_CONTENT,  LayoutParams.WRAP_CONTENT, true);
 	    popup.setFocusable(true);
+	    popup.setBackgroundDrawable(new BitmapDrawable()); //essential to catch KeyEvents happen outside popup window
+    	layout.setOnKeyListener(new View.OnKeyListener() {
+			
+			//@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+					popup.dismiss();
+			        //Log.d(this.getClass().getName(), "back button pressed");
+			    }
+			    //return super.onKeyDown(keyCode, event);
+				return false;
+			}
+		});
 	    popup.showAtLocation(layout, Gravity.CENTER, 10, 10);
 	    
 	    etx_event_date = (EditText) layout.findViewById(R.id.etx_event_date);
@@ -337,24 +361,23 @@ public class EnergyCycle extends AbstractCycle {
         return true;
     }
     
+    private int birthday = -1;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case Const.MENU_CHART_ABOUT:
-//        	Dialog dialog = new Dialog(getApplicationContext());
-//
-//        	dialog.setContentView(R.layout.custom_dialog);
-//        	dialog.setTitle("Custom Dialog");
-//
-//        	TextView text = (TextView) dialog.findViewById(R.id.txv_about);
-//        	text.setText("Hello, this is a custom dialog!");
-//        	ImageView image = (ImageView) dialog.findViewById(R.id.img_about);
-//        	image.setImageResource(android.R.drawable.ic_menu_my_calendar);
-//        	LinearLayout l = (LinearLayout)findViewById(R.layout.energy_display);
-//        	l.ad
+        	Dialog dialog = new Dialog(this);
+        	dialog.setContentView(R.layout.custom_dialog);
+        	setAboutDialog(dialog);
+        	dialog.show();
+        	
             return true;
         case Const.MENU_CHART_SAVEAS:
-        	Toast.makeText(this, "Coming Soon", Const.TOASTSHOWTIME).show();
+        	//Toast.makeText(this, "Coming Soon", Const.TOASTSHOWTIME).show();
+        	birthday = myBioCycle.cal_bday.get(Calendar.YEAR) * 10000
+        					+ (myBioCycle.cal_bday.get(Calendar.MONTH) + 1) * 100 
+        					+ myBioCycle.cal_bday.get(Calendar.DAY_OF_MONTH);
+        	drawPopup();
         	return true;
         case Const.MENU_CHART_CHANGEVIEW:
         	if (myBioCycle.weekly_view) {
@@ -371,6 +394,86 @@ public class EnergyCycle extends AbstractCycle {
         }
         
         return super.onOptionsItemSelected(item);
+    }
+    
+    //overload drawpopup method
+    public void drawPopup() {
+    	LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View layout = inflater.inflate(R.layout.input_popup, (ViewGroup)findViewById(R.id.popup_input_root));
+		
+		popup = new PopupWindow(layout,  LayoutParams.WRAP_CONTENT,  LayoutParams.WRAP_CONTENT, true);
+		popup.setBackgroundDrawable(new BitmapDrawable()); //essential to catch KeyEvents happen outside popup window
+    	layout.setOnKeyListener(new View.OnKeyListener() {
+			
+			//@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+					popup.dismiss();
+			    }
+				return false;
+			}
+		});
+    	((TextView) layout.findViewById(R.id.txv_popup_input_title1)).setText("Who's birthday?");
+    	updateDateDisplay((TextView)layout.findViewById(R.id.txv_popup_input_title2), 
+    													myBioCycle.cal_bday.get(Calendar.YEAR), 
+    													myBioCycle.cal_bday.get(Calendar.MONTH), 
+    													myBioCycle.cal_bday.get(Calendar.DAY_OF_MONTH));
+	    popup.setFocusable(true);
+	    popup.showAtLocation(layout, Gravity.CENTER, 10, 10);
+	    final EditText etx_popup_input_value = (EditText)layout.findViewById(R.id.etx_popup_input_value);
+	    
+	    Button btn_popup_input_create = (Button) layout.findViewById(R.id.btn_popup_input_create);
+	    btn_popup_input_create.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				String name = etx_popup_input_value.getText().toString();
+				if (name != null && !name.equals("")) {
+					List<ContentValues> value = dbHelper.getBirthday(name);
+					if (value.size() == 0 || value == null ) {
+						dbHelper.insertBirthday(birthday, name);
+						Toast.makeText(getBaseContext(), "New birthday inserted", Toast.LENGTH_SHORT).show();
+					} else {
+						dbHelper.updateBirthday(birthday, name);
+						Toast.makeText(getBaseContext(), "Updated existing birthday", Toast.LENGTH_SHORT).show();
+					}
+				}
+				else {
+					Toast.makeText(getBaseContext(), "Please indicate whose birthday is this", Toast.LENGTH_SHORT).show();
+				}
+				popup.dismiss();
+				
+			}
+		});
+	    Button btn_popup_input_cancel = (Button) layout.findViewById(R.id.btn_popup_input_cancel);
+	    btn_popup_input_cancel.setOnClickListener(new View.OnClickListener() {
+			
+			//@Override
+			public void onClick(View arg0) {
+				popup.dismiss();
+			}
+		});
+	    
+    }
+    
+    private void setAboutDialog(Dialog dialog) {
+    	String chartTitle = myBioCycle.chartRenderer.getChartTitle();
+    	TextView text = (TextView) dialog.findViewById(R.id.txv_about);
+    	if (chartTitle.equals(Const.CHARTTITLE[0])) {
+    		dialog.setTitle("Physical Cycle - 23 days");
+        	text.setText("Physical is the dominant cycle in men. " +
+        			"It regulates coordination, strength, endurance, sex, stamina, initiative, resistence to and recovery from injury and illnesses.");
+    	} else if (chartTitle.equals(Const.CHARTTITLE[1])) {
+    		dialog.setTitle("Emotional Cycle - 28 days");
+        	text.setText("Emotional is more for women. " +
+        			"It regulates feelings, moods, sensitivity, sensation, sexuality, fantasy, reactions and creativity");
+    	} else if (chartTitle.equals(Const.CHARTTITLE[2])) {
+    		dialog.setTitle("Intelletual Cycle - 33 days");
+        	text.setText("Intellectual regualtes logic, mental reaction, judgement, memory, deduction, sense of direction, and ambition");
+    	}
+    	
+    	ImageView image = (ImageView) dialog.findViewById(R.id.img_about);
+    	image.setImageResource(android.R.drawable.ic_menu_my_calendar);
+    	dialog.setCancelable(true);
     }
 
     private class MyBtnListener implements View.OnClickListener {

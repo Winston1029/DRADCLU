@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class AbstractCycle extends Activity {
 	View v_chart_p;
 	protected PopupWindow popup;
-	
+	public static DBHelper dbHelper;
 	
 	@Override
 	 public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,11 @@ public class AbstractCycle extends Activity {
 	    
 	    //EditText etv_chk = (EditText) findViewById(R.id.etv_mon2chk);
     	//updateDateDisplay((EditText)findViewById(R.id.etv_mon2chk), myBioCycle.cal_chk.get(Calendar.YEAR), myBioCycle.cal_chk.get(Calendar.MONTH), 0);
+	}
+	
+	protected void initVar() {
+		if (dbHelper == null)
+    		dbHelper = new DBHelper(this);
 	}
 	
 	public void drawPopup(int datePressed) {

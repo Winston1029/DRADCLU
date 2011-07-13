@@ -15,13 +15,12 @@ public class CustomChart extends AbstractChart {
         setChartSettings(chartRenderer, chartTitle, Const.BOUNDARY);
 	}
 	
-	void updateChart(Context context, String[] valueTitles) {
+	void updateChart(Context context, String[] valueTitles, double[] xValue, double[] yValue) {
 		
 		List<double[]> x = new ArrayList<double[]>();
 		List<double[]> values = new ArrayList<double[]>();
-		double[] dDate = {1,2,3,4,5};
-		x.add(dDate);
-		values.add(dDate);
+		x.add(xValue);
+		values.add(yValue);
 		redrawChart(context, valueTitles, x, values);
 	}
 	

@@ -26,6 +26,8 @@ public class ChartProvider extends ContentProvider {
 										    + Charts.CREATED_DATE + " INTEGER,"
 										    + Charts.MODIFIED_DATE + " INTEGER"
 										    + ");";
+    
+    
 	
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 	
@@ -50,6 +52,7 @@ public class ChartProvider extends ContentProvider {
 
 
 	private DatabaseHelper mOpenHelper;
+	SQLiteDatabase db;
 	static UriMatcher sUriMatcher; // = new UriMatcher(UriMatcher.NO_MATCH);
 	static {
 		sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -58,6 +61,7 @@ public class ChartProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         mOpenHelper = new DatabaseHelper(getContext());
+        db = mOpenHelper.getWritableDatabase();
         return true;
     }
 
@@ -121,7 +125,7 @@ public class ChartProvider extends ContentProvider {
             values.put(Charts.YCOOR, "");
         }
 
-        SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        
         long rowId = db.insert(CHARTS_TABLE_NAME, Charts.XCOOR, values);
         if (rowId > 0) {
             Uri noteUri = ContentUris.withAppendedId(Charts.CONTENT_URI, rowId);

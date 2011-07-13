@@ -38,10 +38,11 @@ containing a value of this type.
         public static final int textSize=0x7f010002;
     }
     public static final class drawable {
-        public static final int blue=0x7f020002;
+        public static final int blue=0x7f020003;
         public static final int icon=0x7f020000;
-        public static final int red=0x7f020001;
-        public static final int white_tran50=0x7f020003;
+        public static final int red=0x7f020002;
+        public static final int savedbday=0x7f020001;
+        public static final int white_tran50=0x7f020004;
     }
     public static final class id {
         public static final int TableRow01=0x7f05001a;
@@ -114,6 +115,7 @@ containing a value of this type.
         public static final int menu_delete=0x7f040003;
         public static final int menu_insert=0x7f040002;
         public static final int menu_save_as=0x7f040005;
+        public static final int menu_saved_bday=0x7f040007;
     }
     public static final class styleable {
         /**  These are the attributes that we want to retrieve from the theme

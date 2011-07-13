@@ -9,6 +9,7 @@ public class Charts implements BaseColumns {
 	private Charts() {}
 	
 	public static final String TITLE = "title";
+	public static final String YAXIS = "yAxis";
     public static final String XCOOR = "xcoor";
     public static final String YCOOR = "ycoor";
     public static final String CREATED_DATE = "created";
@@ -19,5 +20,5 @@ public class Charts implements BaseColumns {
     //public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.google.note";
     //public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.google.note";
     
-    public static final String DEFAULT_SORT_ORDER = "xcoor DESC";
+    public static final String DEFAULT_SORT_ORDER = "xcoor ASC";
 }
